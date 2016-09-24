@@ -21,7 +21,7 @@ configureBefore(Angel app) async {}
 /// Put your app routes here!
 configureRoutes(Angel app) async {
   app.post("/upload", (RequestContext req, res) async {
-    if (req.files.isEmpty)
+    if (req.files.isEmpty || req.files[0].data.isEmpty)
       throw new AngelHttpException.BadRequest(
           message: "Please upload a file. :)");
 
