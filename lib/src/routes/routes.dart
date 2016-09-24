@@ -20,7 +20,6 @@ configureBefore(Angel app) async {}
 
 /// Put your app routes here!
 configureRoutes(Angel app) async {
-  app.get("/", (req, res) => res.render("hello"));
   app.post("/upload", (RequestContext req, res) async {
     if (req.files.isEmpty)
       throw new AngelHttpException.BadRequest(
@@ -88,6 +87,5 @@ configureServer(Angel app) async {
 
 bool _isImage(file) {
   var ext = file.filename.split(".").last;
-
   return _IMAGE_EXTENSIONS.contains(ext);
 }

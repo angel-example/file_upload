@@ -1,8 +1,8 @@
-name: angel
-description: An easily-extensible web server framework in Dart.
-version: 1.0.0-dev
-author: thosakwe <thosakwe@gmail.com>
-homepage: https://github.com/angel-dart/angel
+name: example_file_upload
+description: Sample project - designed to be a small taste of Angel.
+version: 1.0.0
+author: Tobe O
+homepage: https://medium.com/@thosakwe/building-a-simple-file-upload-app-with-angel-64938d4ddc61
 publish_to: none
 dependencies:
   angel_auth: ^1.0.0-dev
