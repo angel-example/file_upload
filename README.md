@@ -1,4 +1,7 @@
 # example_file_upload
+
+![File Information Display Page](screenshots/file_info.png)
+
 Sample project - designed to be a small taste of Angel.
 
 To run, simply:
