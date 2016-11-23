@@ -64,7 +64,8 @@ configureRoutes(Angel app) async {
     ''')
       ..end();
   });
-  app.all('*', serveStatic());
+
+  await app.configure(new VirtualDirectory());
 }
 
 configureAfter(Angel app) async {
