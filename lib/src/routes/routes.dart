@@ -78,7 +78,7 @@ configureRoutes(Angel app) async {
       ..end();
   });
 
-  await app.configure(new VirtualDirectory());
+  await app.configure(new CachingVirtualDirectory());
   app.responseFinalizers.add(gzip());
 }
 
