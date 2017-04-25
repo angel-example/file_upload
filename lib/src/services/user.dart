@@ -2,7 +2,6 @@ import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_mongo/angel_mongo.dart';
 import 'package:crypto/crypto.dart' show sha256;
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:validate/validate.dart';
 import '../models/user.dart';
 export '../models/user.dart';
 
@@ -24,17 +23,17 @@ String hashPassword(String password) =>
 /// Here, we extended the base service class. This allows to only expose
 /// specific methods, and also allows more freedom over things such as validation.
 class UserService extends Service {
-  MongoTypedService<User> _inner;
+  TypedService<User> _inner;
 
   UserService(DbCollection collection) : super() {
-    _inner = new MongoTypedService<User>(collection);
+    _inner = new TypedService<User>(new MongoService(collection));
   }
 
   @override
   index([Map params]) {
     if (params != null && params.containsKey("provider")) {
       // Nobody needs to see the entire user list except for the server.
-      throw new AngelHttpException.Forbidden();
+      throw new AngelHttpException.forbidden();
     }
 
     return _inner.index(params);
@@ -44,7 +43,7 @@ class UserService extends Service {
   create(data, [Map params]) {
     if (params != null && params.containsKey("provider")) {
       // Deny creating users to the public - this should be done by the server only.
-      throw new AngelHttpException.Forbidden();
+      throw new AngelHttpException.forbidden();
     }
 
     try {
@@ -53,7 +52,7 @@ class UserService extends Service {
       Validate.isEmail(data["email"]);
       data["password"] = hashPassword(data["password"]);
     } catch (e) {
-      throw new AngelHttpException.BadRequest(
+      throw new AngelHttpException.badRequest(
           message: "User must have a username, e-mail address and password.");
     }
 

@@ -1,7 +1,7 @@
 library angel.models.user;
 
 import 'dart:convert';
-import 'package:angel_mongo/model.dart';
+import 'package:angel_framework/common.dart';
 
 class User extends Model {
   String email;
